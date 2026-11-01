@@ -1,0 +1,10 @@
+# Only the website (web/), the API (api/) and the engine (tool/model.py, tool/base_case.json) are needed on Vercel.
+*.pdf
+*.docx
+*.pptx
+*.xlsx
+docs/
+benchmark/
+**/__pycache__
+tool/app.py
+tool/requirements.txt

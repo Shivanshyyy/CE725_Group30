@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Feasibility Tool · Land Deal Feasibility · CE725 Group 30</title>
+<meta name="description" content="Enter a land deal and get a go/no-go verdict, peak funding, maximum land price, what-ifs, lender ratios and an investment memo.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e6a5b'/%3E%3Cpath d='M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5' stroke='white' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<script src="/assets/tool.js" defer></script>
+</head>
+<body>
+<header class="bar">
+  <div class="wrap">
+    <div class="brand-wrap">
+    <a class="brand" href="/">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="var(--accent)"/><path d="M5 11h22" stroke="var(--accent-ink)" stroke-width="2"/><path d="M5 11l5 9 6 3 5-4 6-8" stroke="var(--accent-ink)" stroke-width="2.4" fill="none" stroke-linejoin="round"/></svg>
+      <span>Land Deal Feasibility</span>
+    </a>
+    <span class="group-badge" title="CE725 course project team">Group 30</span>
+    </div>
+    <nav class="nav" aria-label="Main">
+      <a href="/">Home</a>
+      <a href="/#how">How it works</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="tool-head">
+    <div class="head-row">
+      <h1>Should we buy this land?</h1>
+      <div class="name">
+        <label for="project-name">Project</label>
+        <input type="text" id="project-name" maxlength="120" placeholder="Name this project">
+      </div>
+    </div>
+    <p class="print-only" id="print-name"></p>
+    <p class="small muted">All money in ₹ crore unless shown. Quarters are counted from the land purchase (Q0).</p>
+    <div id="note" class="notice info" role="status" hidden></div>
+    <div id="illus" class="notice info" hidden></div>
+    <div id="error" class="notice error" role="alert" hidden></div>
+  </div>
+
+  <div class="layout">
+    <aside class="side" aria-label="What if">
+     <details id="whatif-box" open>
+      <summary><h2 class="side-title">What if?</h2><span class="state" id="whatif-state">Base case</span></summary>
+      <div class="side-body">
+      <div class="field">
+        <label for="preset">Start from a case</label>
+        <select id="preset"></select>
+      </div>
+      <div class="field">
+        <label for="shock-price">Sale price change <output id="out-price">0%</output></label>
+        <input type="range" id="shock-price" min="-30" max="30" step="1" value="0">
+      </div>
+      <div class="field">
+        <label for="shock-cost">Construction cost change <output id="out-cost">0%</output></label>
+        <input type="range" id="shock-cost" min="-30" max="30" step="1" value="0">
+      </div>
+      <div class="field">
+        <label for="shock-pace">Sales pace change <output id="out-pace">0%</output></label>
+        <input type="range" id="shock-pace" min="-50" max="50" step="5" value="0">
+      </div>
+      <div class="field">
+        <label for="shock-delay">Extra delay <output id="out-delay">0 quarters</output></label>
+        <input type="range" id="shock-delay" min="0" max="8" step="1" value="0">
+      </div>
+      <p class="small muted" id="preset-note"></p>
+      <p class="status" id="status" aria-live="polite"></p>
+      </div>
+     </details>
+    </aside>
+
+    <div>
+      <div class="tabs" role="tablist" aria-label="Results">
+        <button role="tab" id="t-decision" aria-controls="p-decision" aria-selected="true">Decision</button>
+        <button role="tab" id="t-cashflow" aria-controls="p-cashflow" aria-selected="false">Cash flow</button>
+        <button role="tab" id="t-funding" aria-controls="p-funding" aria-selected="false">Funding &amp; RERA account</button>
+        <button role="tab" id="t-whatif" aria-controls="p-whatif" aria-selected="false">What if</button>
+        <button role="tab" id="t-inputs" aria-controls="p-inputs" aria-selected="false">Inputs &amp; sources</button>
+        <button role="tab" id="t-memo" aria-controls="p-memo" aria-selected="false">Memo</button>
+        <button role="tab" id="t-how" aria-controls="p-how" aria-selected="false">How it works</button>
+      </div>
+
+      <section class="panel" role="tabpanel" id="p-decision" aria-labelledby="t-decision">
+        <div id="verdict" class="verdict"></div>
+        <div class="row-actions">
+          <button class="btn" id="print" type="button">Print summary for a lender</button>
+        </div>
+        <div class="cards" id="cards"></div>
+        <p class="small muted">The verdict thresholds (hurdle rate, minimum profit on cost) are assumptions to set for your business.</p>
+        <div class="warns" id="warns"></div>
+        <h3>When the money is needed</h3>
+        <div class="chart-box"><canvas id="chart-cash" aria-label="Cumulative project cash and outside money by quarter"></canvas></div>
+        <h3>Where the money goes</h3>
+        <div class="chart-box" style="height:320px"><canvas id="chart-costs" aria-label="Total project cost by line, ₹ crore"></canvas></div>
+        <p class="small muted" id="costs-note"></p>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden>
+        <div class="row-actions">
+          <button class="btn" id="dl-csv" type="button">Download as CSV</button>
+        </div>
+        <p class="small muted">₹ crore unless the row says otherwise. Every amount happens at the end of its quarter. Costs are shown as positive amounts.</p>
+        <div class="table-wrap"><table class="cf" id="cf-table"></table></div>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-funding" aria-labelledby="t-funding" hidden>
+        <div class="cards" id="lender-cards"></div>
+        <p id="funding-note"></p>
+        <div class="chart-box"><canvas id="chart-balances" aria-label="RERA account, loan and outside money by quarter"></canvas></div>
+        <div class="prose" id="rera-note"></div>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-whatif" aria-labelledby="t-whatif" hidden>
+        <h3>Three cases side by side</h3>
+        <p class="small muted" id="presets-note"></p>
+        <div class="table-wrap"><table id="presets-table"></table></div>
+        <h3>Which assumption matters most?</h3>
+        <div class="chart-box" style="height:300px"><canvas id="chart-tornado" aria-label="Tornado chart of project NPV"></canvas></div>
+        <p class="small muted" id="tornado-note"></p>
+        <h3>Sensitivity table</h3>
+        <div class="table-wrap"><table id="sens-table"></table></div>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-inputs" aria-labelledby="t-inputs" hidden>
+        <p>Edit any value; results update at once. <span class="pill sourced">sourced</span> from a cited report or law ·
+          <span class="pill assumption">assumption</span> a judgement to confirm · <span class="pill illustrative">illustrative</span>
+          a placeholder to replace · <span class="pill your">your input</span> a value you entered. A blank or a labelled guess is better than an invented number.</p>
+        <div class="row-actions">
+          <button class="btn" id="reset" type="button">Reset to the example</button>
+          <button class="btn" id="export" type="button">Save inputs to a file</button>
+          <label class="btn" for="import">Load inputs from a file</label>
+          <input type="file" id="import" accept="application/json,.json" hidden>
+        </div>
+        <div class="table-wrap"><table class="inputs" id="inputs-table"></table></div>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-memo" aria-labelledby="t-memo" hidden>
+        <p class="small muted">Written from the numbers by a fixed template. No AI service sees your deal.</p>
+        <div class="row-actions">
+          <button class="btn" id="dl-memo" type="button">Download memo (.txt)</button>
+          <button class="btn" id="copy-memo" type="button">Copy memo</button>
+        </div>
+        <pre class="memo" id="memo"></pre>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-how" aria-labelledby="t-how" hidden>
+        <div class="prose">
+          <h3>What the tool does, step by step</h3>
+          <ol>
+            <li><b>Areas.</b> Built-up area = plot × FSI. Saleable area = built-up area × saleable ratio.</li>
+            <li><b>Costs.</b> Land and stamp duty at Q0. Approval fees and premiums spread over the quarters before construction. Construction cost escalates each year and is spent along an S-curve (slow, fast, slow). Soft costs, contingency and marketing are percentages.</li>
+            <li><b>Sales and collections.</b> A fixed share of the saleable area sells each quarter from launch. Buyers pay the booking amount, then in step with construction progress, then the rest at possession.</li>
+            <li><b>Delay.</b> A delay stretches construction and moves possession; interest is then owed to buyers under RERA Section 18.</li>
+            <li><b>RERA account.</b> A set share of collections goes into the separate account. Withdrawals cover only land and construction cost already spent, in proportion to completion.</li>
+            <li><b>Tax.</b> Charged on cumulative profit; early losses are carried forward.</li>
+            <li><b>Rates.</b> Hurdle rates are effective annual rates (quarterly = (1 + r)<sup>1/4</sup> − 1). The loan rate is a nominal annual rate with interest charged monthly, as banks quote it (quarterly = (1 + r/12)<sup>3</sup> − 1). Quarter inputs are whole numbers.</li>
+            <li><b>Funding.</b> Each quarter, any shortfall is met by equity first, then the loan, up to their limits. Surplus repays the loan first (never from the RERA account), is held until possession, then returned to equity.</li>
+            <li><b>Results.</b> NPV, IRR, payback, profit on cost, peak funding, lender ratios, break-even price and maximum land price.</li>
+          </ol>
+          <h3>Plain meanings</h3>
+          <ul>
+            <li><b>NPV (net present value):</b> all cash in and out, valued today at your hurdle rate. Above zero beats the hurdle.</li>
+            <li><b>IRR (internal rate of return):</b> the yearly return the cash flows earn. If the cash flow changes sign more than once there may be several IRRs; then trust NPV and MIRR.</li>
+            <li><b>MIRR (modified IRR):</b> an IRR that assumes realistic borrowing and reinvestment rates, so it always has one answer.</li>
+            <li><b>Hurdle rate:</b> the minimum yearly return you want before you will do the project.</li>
+            <li><b>Profit on cost:</b> profit before tax ÷ total cost including loan interest.</li>
+            <li><b>Peak funding:</b> the most outside money (equity + loan) in the project at one time.</li>
+            <li><b>DSCR (debt service cover ratio):</b> cash available ÷ loan payments due. Above 1 means payments are covered.</li>
+            <li><b>Loan-to-cost:</b> peak loan ÷ total project cost.</li>
+            <li><b>Receivables cover:</b> (money still due from buyers + value of unsold flats) ÷ loan balance.</li>
+            <li><b>FSI (floor space index):</b> built-up area allowed per unit of plot area.</li>
+          </ul>
+          <h3>Course links (CE725)</h3>
+          <p>Effective quarterly rates (Ch 2), present worth / NPV (Ch 5), IRR and incremental analysis (Ch 7), multiple IRRs and MIRR (Ch 8), escalation and inflation (Ch 9), tax (Ch 11), break-even (Ch 12), payback (Ch 1).</p>
+          <h3>Limits</h3>
+          <p>One project, one phase. No joint-development or revenue-share deals. GST is passed through, so revenue is net of GST. Tax uses a simplified cumulative-profit rule. The RERA account balance is released at possession. The verdict thresholds are assumptions to confirm with developers.</p>
+          <h3>Your data</h3>
+          <p>Inputs are sent to a calculation function, used once, and not stored or logged by the tool. They are saved only in this browser so you can come back to them.</p>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="small muted disclaimer">A decision aid, not investment advice.</p>
+    <table class="titleblock" aria-label="Project credits">
+      <tr><th scope="row">Course</th><td colspan="3">CE725 Construction Economics and Finance, IIT Bombay · Topic 2</td></tr>
+      <tr><th scope="row">Team</th><td colspan="3">Ojas Somani · Shivam Shankar · Mrunal Pachpande</td></tr>
+      <tr><th scope="row">Group</th><td class="group-no">30</td><th scope="row">Sheet</th><td>Nov 2026</td></tr>
+    </table>
+  </div>
+</footer>
+</body>
+</html>

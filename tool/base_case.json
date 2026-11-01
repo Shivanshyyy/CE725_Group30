@@ -1,0 +1,45 @@
+{
+  "_about": "Base case inputs. Each input has a value, unit, source, date and flag. Flags: 'sourced' = taken from a cited report or law; 'assumption' = a team judgement to confirm; 'illustrative' = placeholder until the team's sample project numbers replace it. Never present an illustrative value as market data.",
+  "project_name": "Illustrative Pune residential project (placeholder until the team's sample project is entered)",
+  "inputs": {
+    "plot_area_sqft": {"label": "Plot area", "value": 43560, "unit": "sq ft", "group": "Project", "flag": "illustrative", "source": "Placeholder: 1 acre. Replace with the sample project's plot area.", "date": ""},
+    "fsi": {"label": "FSI used (incl. premium FSI and TDR)", "value": 2.5, "unit": "×", "group": "Project", "flag": "illustrative", "source": "Placeholder. Check the local development control rules for the plot.", "date": ""},
+    "saleable_ratio": {"label": "Saleable area ÷ built-up area", "value": 0.80, "unit": "ratio", "group": "Project", "flag": "illustrative", "source": "Placeholder. Use the area basis the sale price is quoted on.", "date": ""},
+
+    "land_price_cr": {"label": "Land price", "value": 18.0, "unit": "₹ crore", "group": "Land", "flag": "illustrative", "source": "Placeholder. Replace with the land deal value.", "date": ""},
+    "ready_reckoner_cr": {"label": "Ready reckoner value of the land", "value": 15.0, "unit": "₹ crore", "group": "Land", "flag": "illustrative", "source": "Placeholder. Look up the survey number on the IGR Maharashtra eASR portal. 2026-27 rates were reported unchanged from 2025-26, though one report says they were revised; confirm on eASR.", "date": ""},
+    "stamp_duty_pct": {"label": "Stamp duty + registration", "value": 7.0, "unit": "% of the higher of land price and ready reckoner value", "group": "Land", "flag": "assumption", "source": "Assumption. Confirm the rate for this property with IGR Maharashtra.", "date": ""},
+
+    "approvals_cr": {"label": "Approval and scrutiny fees", "value": 2.0, "unit": "₹ crore", "group": "Approvals & premiums", "flag": "illustrative", "source": "Placeholder. Replace with the municipal fee schedule for the project.", "date": ""},
+    "premiums_cr": {"label": "Premiums (FSI, fungible, TDR)", "value": 6.0, "unit": "₹ crore", "group": "Approvals & premiums", "flag": "illustrative", "source": "Placeholder. Premiums are a large cost in Mumbai especially; take them from the authority's demand notes or rates.", "date": ""},
+
+    "construction_rate_psf": {"label": "Construction cost (today)", "value": 3604, "unit": "₹ / sq ft of built-up area", "group": "Construction", "flag": "sourced", "source": "ANAROCK average for a standard-plus residential project, top 7 cities, 2025 (reported by Free Press Journal, 5 Sep 2026).", "date": "2025"},
+    "cost_escalation_pct": {"label": "Construction cost escalation", "value": 7.7, "unit": "% per year", "group": "Construction", "flag": "sourced", "source": "Derived from ANAROCK: ₹2,681 (2021) → ₹3,604 (2025), (3604/2681)^(1/4) − 1 = 7.7% a year.", "date": "2021–2025"},
+    "construction_start_q": {"label": "Construction starts in quarter", "value": 3, "unit": "quarter", "group": "Construction", "flag": "illustrative", "source": "Placeholder: after about 3 quarters of approvals.", "date": ""},
+    "construction_quarters": {"label": "Construction duration (planned)", "value": 12, "unit": "quarters", "group": "Construction", "flag": "illustrative", "source": "Placeholder: 3 years for a mid-rise tower.", "date": ""},
+    "soft_cost_pct": {"label": "Soft costs (design, project management, insurance)", "value": 8.0, "unit": "% of construction cost", "group": "Construction", "flag": "assumption", "source": "Assumption. Replace with consultant quotes.", "date": ""},
+    "contingency_pct": {"label": "Contingency", "value": 5.0, "unit": "% of construction + soft costs", "group": "Construction", "flag": "assumption", "source": "Assumption.", "date": ""},
+
+    "launch_q": {"label": "Sales launch in quarter", "value": 3, "unit": "quarter", "group": "Sales", "flag": "illustrative", "source": "Placeholder: launch after RERA registration, with construction start.", "date": ""},
+    "price_psf": {"label": "Sale price at launch (net of GST)", "value": 10063, "unit": "₹ / sq ft of saleable area", "group": "Sales", "flag": "sourced", "source": "Knight Frank, India Real Estate H1 2026: Pune average residential price. Adjust for the project's micro-market.", "date": "Jan–Jun 2026"},
+    "price_growth_pct": {"label": "Sale price growth", "value": 5.0, "unit": "% per year", "group": "Sales", "flag": "sourced", "source": "Knight Frank, India Real Estate H1 2026: Pune prices +5% year on year.", "date": "Jan–Jun 2026"},
+    "sales_pace_pct": {"label": "Sales pace", "value": 6.0, "unit": "% of saleable area sold per quarter", "group": "Sales", "flag": "assumption", "source": "Assumption. For context, Knight Frank puts Pune's unsold stock at 4.5 quarters to sell (market level, H1 2026).", "date": ""},
+    "marketing_pct": {"label": "Marketing and brokerage", "value": 3.0, "unit": "% of booking value", "group": "Sales", "flag": "assumption", "source": "Assumption.", "date": ""},
+    "booking_pct": {"label": "Paid at booking", "value": 10.0, "unit": "% of price", "group": "Payment plan", "flag": "sourced", "source": "RERA Act 2016, Section 13: no more than 10% before a registered agreement for sale.", "date": "2016"},
+    "possession_pct": {"label": "Paid at possession", "value": 5.0, "unit": "% of price", "group": "Payment plan", "flag": "assumption", "source": "Assumption. The rest is paid in step with construction progress.", "date": ""},
+
+    "escrow_pct": {"label": "Share of collections into the RERA account", "value": 70.0, "unit": "%", "group": "RERA", "flag": "sourced", "source": "RERA Act 2016, Section 4(2)(l)(D). Kept as an input because states can vary it; confirm the state rule.", "date": "2016"},
+    "delay_q": {"label": "Construction delay", "value": 0, "unit": "quarters", "group": "RERA", "flag": "assumption", "source": "Scenario input. 0 in the base case.", "date": ""},
+    "buyer_interest_pct": {"label": "Interest owed to buyers for late possession", "value": 11.0, "unit": "% per year", "group": "RERA", "flag": "assumption", "source": "Assumption. RERA Section 18 makes the developer pay interest for each month of delay. Many state rules set the rate at SBI's highest MCLR + 2%; confirm the current figure in the state RERA rules.", "date": ""},
+
+    "tax_rate_pct": {"label": "Corporate income tax", "value": 25.17, "unit": "% of taxable profit", "group": "Tax", "flag": "assumption", "source": "Section 115BAA rate (22% × 1.10 × 1.04) from the CE725 taxation lecture. Confirm against the Income Tax Act before use.", "date": ""},
+
+    "equity_limit_cr": {"label": "Equity available", "value": 30.0, "unit": "₹ crore", "group": "Funding", "flag": "illustrative", "source": "Placeholder. Equity funds deficits first, up to this amount.", "date": ""},
+    "loan_limit_cr": {"label": "Construction loan sanctioned", "value": 25.0, "unit": "₹ crore", "group": "Funding", "flag": "illustrative", "source": "Placeholder. Replace with the lender's sanction.", "date": ""},
+    "loan_rate_pct": {"label": "Construction loan interest", "value": 12.0, "unit": "% per year (nominal, charged monthly)", "group": "Funding", "flag": "assumption", "source": "Assumption. No current published construction-finance rate was found; replace with a bank or NBFC term sheet.", "date": ""},
+
+    "hurdle_rate_pct": {"label": "Project hurdle rate (discount rate)", "value": 15.0, "unit": "% per year", "group": "Decision rules", "flag": "assumption", "source": "Assumption [VALIDATE]. One source cites 12–18% for residential projects.", "date": ""},
+    "equity_hurdle_pct": {"label": "Equity hurdle rate", "value": 18.0, "unit": "% per year", "group": "Decision rules", "flag": "assumption", "source": "Assumption [VALIDATE].", "date": ""},
+    "min_profit_on_cost_pct": {"label": "Minimum profit on cost for a Go", "value": 15.0, "unit": "%", "group": "Decision rules", "flag": "assumption", "source": "Assumption [VALIDATE]: which go/no-go rule the developer actually uses.", "date": ""}
+  }
+}

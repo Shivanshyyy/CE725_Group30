@@ -1,0 +1,23 @@
+output,unit,benchmark_value,notes
+built_up_area_sqft,sq ft,,
+saleable_area_sqft,sq ft,,
+total_construction_cost_cr,Rs crore,,escalated
+total_bookings_cr,Rs crore,,
+total_collections_cr,Rs crore,,
+total_cost_cr,Rs crore,,all cost lines excl. loan interest and tax
+collections_q6_cr,Rs crore,,
+collections_q10_cr,Rs crore,,
+construction_q6_cr,Rs crore,,
+construction_q10_cr,Rs crore,,
+rera_balance_q6_cr,Rs crore,,end of quarter
+rera_balance_q10_cr,Rs crore,,end of quarter
+project_npv_cr,Rs crore,,after tax before loan
+project_irr_pct,% per year,,annualised
+payback_years,years,,
+profit_on_cost_pct,%,,before tax incl. loan interest
+peak_funding_cr,Rs crore,,
+peak_quarter,quarter,,
+total_loan_interest_cr,Rs crore,,
+equity_irr_pct,% per year,,
+breakeven_price_psf,Rs per sq ft,,Goal Seek NPV = 0
+max_land_price_cr,Rs crore,,Goal Seek NPV = 0
