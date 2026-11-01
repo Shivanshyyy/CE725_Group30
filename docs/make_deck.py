@@ -26,7 +26,8 @@ AMBER, GREY = rgb("94660A"), rgb("8A9792")
 HEAD, BODY = "Arial Narrow", "Calibri"
 W, H = 13.333, 7.5
 GROUP = "Group 30"
-TEAM = "Ojas Somani · Shivam Shankar · Mrunal Pachpande"
+MEMBERS = ["Ojas Somani", "Shivam Shankar", "Mrunal Pachpande", "Shivansh Chaudhary", "Arya Chourasia"]
+TEAM = " · ".join(n.replace(" ", "\u00a0") for n in MEMBERS)  # no-break space keeps each name on one line
 cr, pct = M.cr, M.pct
 
 
@@ -250,8 +251,8 @@ def build(ev, presets, torn, base_npv, tests, bench_entered, illus):
          size=20, color=LINE)
     cash_profile(s, outstanding, 0.8, 3.15, 7.6, 2.75, dark=True,
                  label=f"Peak funding −{cr(m['peak_funding'])[1:]} · Q{tp}")
-    title_block(s, 8.95, 4.95, 3.85, dark=True)
-    text(s, 8.95, 4.45, 3.85, 0.4, "CE725 · Topic 2 · Nov 2026", size=14, color=LINE)
+    title_block(s, 8.95, 4.7, 3.85, dark=True)
+    text(s, 8.95, 4.2, 3.85, 0.4, "CE725 · Topic 2 · Nov 2026", size=14, color=LINE)
     notes(s, 0.5, "Open with the user's question, not the tool. The drawing is the funding hole of the example project: "
                   "how deep it goes and when the developer climbs out. Introduce Group 30 and each member's role.")
 
@@ -580,7 +581,7 @@ def build(ev, presets, torn, base_npv, tests, bench_entered, illus):
         text(s, x, 4.0, 3.8, 0.6, lab, size=17, color=LINE)
     text(s, 0.6, 5.2, 7.5, 0.8, "Questions", size=40, bold=True, color=WHITE, font=HEAD)
     text(s, 0.6, 6.05, 7.5, 0.9, illus_note, size=14, color=LINE)
-    title_block(s, 8.95, 5.0, 3.85, dark=True)
+    title_block(s, 8.95, 4.6, 3.85, dark=True)
     notes(s, 0.25, "Restate the answer in one breath, then take questions. Any member may be asked about any formula.")
 
     # footer on content slides: course, group and slide number

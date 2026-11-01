@@ -32,7 +32,9 @@ import model as M  # noqa: E402
 DATE = "1 Nov 2026"  # date the documents were regenerated and the checks run
 TEAM = [("Ojas Somani", "23B4225", "Project lead and finance modeller"),
         ("Shivam Shankar", "23B1851", "AI and tool developer"),
-        ("Mrunal Pachpande", "23B0723", "Validation engineer and data lead")]
+        ("Mrunal Pachpande", "23B0723", "Validation engineer and data lead"),
+        ("Shivansh Chaudhary", "24B2456", "Team member (role to confirm)"),
+        ("Arya Chourasia", "24B3034", "Team member (role to confirm)")]
 TEAL, BRICK, INK, MUTED, GREY = "0E6A5B", "B0532A", "1A2421", "5A6964", "8A9792"
 AMBER_BG, TEAL_BG, HEAD_BG = "FFF4D6", "E3F1EE", "0E6A5B"
 FIG = HERE / "figures"

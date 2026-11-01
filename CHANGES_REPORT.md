@@ -1,7 +1,7 @@
 # Change report: review and redesign (1 Nov 2026)
 
 **Project:** CE725 Topic 2, Real Estate Feasibility and Appraisal Tool  
-**Team:** Group 30 (Ojas Somani, Shivam Shankar, Mrunal Pachpande)  
+**Team:** Group 30 (Ojas Somani, Shivam Shankar, Mrunal Pachpande, Shivansh Chaudhary, Arya Chourasia)  
 **Reviewer:** Claude (AI), working on the team's request. Log this review in the AI usage log (rows 34–38 were added for it).
 
 ## 1. What was checked
