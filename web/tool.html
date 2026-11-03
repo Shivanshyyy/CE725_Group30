@@ -3,156 +3,249 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Feasibility Tool · Land Deal Feasibility · CE725 Group 30</title>
+<title>Feasibility Tool · Land Deal Feasibility</title>
 <meta name="description" content="Enter a land deal and get a go/no-go verdict, peak funding, maximum land price, what-ifs, lender ratios and an investment memo.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230e6a5b'/%3E%3Cpath d='M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5' stroke='white' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Cpath d='M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5' stroke='white' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/tour.js" defer></script>
 <script src="/assets/tool.js" defer></script>
 </head>
 <body>
-<header class="bar">
-  <div class="wrap">
-    <div class="brand-wrap">
-    <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="var(--accent)"/><path d="M5 11h22" stroke="var(--accent-ink)" stroke-width="2"/><path d="M5 11l5 9 6 3 5-4 6-8" stroke="var(--accent-ink)" stroke-width="2.4" fill="none" stroke-linejoin="round"/></svg>
-      <span>Land Deal Feasibility</span>
-    </a>
-    <span class="group-badge" title="CE725 course project team">Group 30</span>
-    </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.7 18-8-14a2 2 0 0 0-3.5 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.7-3M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-house" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/"><span class="brand-mark"><svg class="icon" style="width:20px;height:20px"><use href="#i-house"/></svg></span>Land Deal Feasibility</a>
     <nav class="nav" aria-label="Main">
       <a href="/">Home</a>
       <a href="/#how">How it works</a>
+      <a href="/tool" aria-current="page">Tool</a>
+      <button type="button" id="help-btn" data-open="help"><svg class="icon" style="margin-right:6px"><use href="#i-help"/></svg>Help</button>
     </nav>
+    <button type="button" class="btn btn-ghost btn-icon menu-btn" id="help-mobile" data-open="help" aria-label="Help"><svg class="icon"><use href="#i-help"/></svg></button>
+    <button type="button" class="btn btn-ghost btn-icon menu-btn" data-open="menu" aria-label="Open menu"><svg class="icon"><use href="#i-menu"/></svg></button>
   </div>
 </header>
 
-<main class="wrap">
-  <div class="tool-head">
-    <div class="head-row">
+<dialog class="drawer" id="menu" aria-label="Menu">
+  <div class="dialog-body">
+    <div class="drawer-head"><strong>Menu</strong><button type="button" class="btn btn-ghost btn-icon" data-close aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button></div>
+    <a href="/">Home</a>
+    <a href="/#how">How it works</a>
+    <a href="/tool" aria-current="page">Feasibility tool</a>
+    <button type="button" class="drawer-link" data-open="help" data-close>Help and guided tour</button>
+  </div>
+</dialog>
+
+<dialog id="help" aria-labelledby="help-title">
+  <div class="dialog-body">
+    <h2 id="help-title">How to use this tool</h2>
+    <ol class="steps-mini">
+      <li><b>Enter your deal</b> in <b>Your inputs</b>: replace the example numbers with your project's.</li>
+      <li><b>Read the verdict</b> and the key numbers on <b>Decision</b>.</li>
+      <li><b>Stress-test it</b> in the <b>What if?</b> panel: try the downside case or move the sliders.</li>
+      <li><b>Share it</b>: print a one-page summary for your lender, or download the memo.</li>
+    </ol>
+    <p class="muted small">Every result card has an <svg class="icon" style="width:14px;height:14px;vertical-align:-2px"><use href="#i-info"/></svg> button with a plain definition. The <b>How it works</b> tab explains each step and term.</p>
+    <div class="actions">
+      <button type="button" class="btn" data-close data-go="how">Open How it works</button>
+      <button type="button" class="btn btn-primary" data-close data-tour>Take the guided tour</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="welcome" aria-labelledby="welcome-title">
+  <div class="dialog-body">
+    <span class="badge your" style="align-self:flex-start">New here?</span>
+    <h2 id="welcome-title">Check a land deal in a few minutes</h2>
+    <p class="muted">This tool tells you whether a residential project clears your target return, how much money you need and when, and the most you should pay for the land.</p>
+    <p class="muted">It opens with an <b>example project</b>, so you can see how it works before entering your own numbers.</p>
+    <div class="actions">
+      <button type="button" class="btn" data-close id="welcome-skip">Explore on my own</button>
+      <button type="button" class="btn btn-primary" data-close data-tour>Take the 1-minute tour</button>
+    </div>
+  </div>
+</dialog>
+
+<main id="main" class="container" tabindex="-1">
+  <div class="page-head">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Feasibility tool</span></nav>
+    <div class="title-row">
       <h1>Should we buy this land?</h1>
-      <div class="name">
-        <label for="project-name">Project</label>
-        <input type="text" id="project-name" maxlength="120" placeholder="Name this project">
-      </div>
+      <span class="status busy" id="status" role="status" aria-live="polite">Loading…</span>
     </div>
     <p class="print-only" id="print-name"></p>
-    <p class="small muted">All money in ₹ crore unless shown. Quarters are counted from the land purchase (Q0).</p>
-    <div id="note" class="notice info" role="status" hidden></div>
-    <div id="illus" class="notice info" hidden></div>
-    <div id="error" class="notice error" role="alert" hidden></div>
+    <div class="name-field">
+      <label for="project-name">Project name</label>
+      <input type="text" id="project-name" maxlength="120" autocomplete="off" placeholder="For example: Baner 1-acre residential tower">
+    </div>
+    <p class="muted small">All money in ₹ crore unless shown. Quarters are counted from the land purchase (Q0).</p>
+    <div id="note" class="alert info" role="status" hidden></div>
+    <div id="next-step" class="alert info" hidden></div>
+    <div id="error" class="alert danger" role="alert" hidden></div>
   </div>
 
   <div class="layout">
-    <aside class="side" aria-label="What if">
-     <details id="whatif-box" open>
-      <summary><h2 class="side-title">What if?</h2><span class="state" id="whatif-state">Base case</span></summary>
-      <div class="side-body">
-      <div class="field">
-        <label for="preset">Start from a case</label>
-        <select id="preset"></select>
+    <aside class="whatif collapsed" id="whatif" aria-labelledby="whatif-heading">
+      <button type="button" class="whatif-toggle" id="whatif-toggle" aria-expanded="false" aria-controls="whatif-body">
+        <span>What if? <span class="badge outline case-badge">Base case</span></span>
+        <svg class="icon chev"><use href="#i-chev"/></svg>
+      </button>
+      <div class="whatif-title"><h2 id="whatif-heading" style="font-size:16px">What if?</h2><span class="badge outline case-badge">Base case</span></div>
+      <div class="whatif-body" id="whatif-body">
+        <p class="help">Stress-test the deal. These change the results without touching your inputs.</p>
+        <div class="field">
+          <label for="preset">Start from a case</label>
+          <select id="preset"></select>
+        </div>
+        <div class="field">
+          <label for="shock-price">Sale price change <output id="out-price" for="shock-price">0%</output></label>
+          <input type="range" id="shock-price" min="-30" max="30" step="1" value="0">
+        </div>
+        <div class="field">
+          <label for="shock-cost">Construction cost change <output id="out-cost" for="shock-cost">0%</output></label>
+          <input type="range" id="shock-cost" min="-30" max="30" step="1" value="0">
+        </div>
+        <div class="field">
+          <label for="shock-pace">Sales pace change <output id="out-pace" for="shock-pace">0%</output></label>
+          <input type="range" id="shock-pace" min="-50" max="50" step="5" value="0">
+        </div>
+        <div class="field">
+          <label for="shock-delay">Extra delay <output id="out-delay" for="shock-delay">0 quarters</output></label>
+          <input type="range" id="shock-delay" min="0" max="8" step="1" value="0">
+        </div>
+        <p class="help" id="preset-note"></p>
+        <button type="button" class="btn btn-sm" id="shock-reset">Back to the base case</button>
       </div>
-      <div class="field">
-        <label for="shock-price">Sale price change <output id="out-price">0%</output></label>
-        <input type="range" id="shock-price" min="-30" max="30" step="1" value="0">
-      </div>
-      <div class="field">
-        <label for="shock-cost">Construction cost change <output id="out-cost">0%</output></label>
-        <input type="range" id="shock-cost" min="-30" max="30" step="1" value="0">
-      </div>
-      <div class="field">
-        <label for="shock-pace">Sales pace change <output id="out-pace">0%</output></label>
-        <input type="range" id="shock-pace" min="-50" max="50" step="5" value="0">
-      </div>
-      <div class="field">
-        <label for="shock-delay">Extra delay <output id="out-delay">0 quarters</output></label>
-        <input type="range" id="shock-delay" min="0" max="8" step="1" value="0">
-      </div>
-      <p class="small muted" id="preset-note"></p>
-      <p class="status" id="status" aria-live="polite"></p>
-      </div>
-     </details>
     </aside>
 
-    <div>
-      <div class="tabs" role="tablist" aria-label="Results">
-        <button role="tab" id="t-decision" aria-controls="p-decision" aria-selected="true">Decision</button>
-        <button role="tab" id="t-cashflow" aria-controls="p-cashflow" aria-selected="false">Cash flow</button>
-        <button role="tab" id="t-funding" aria-controls="p-funding" aria-selected="false">Funding &amp; RERA account</button>
-        <button role="tab" id="t-whatif" aria-controls="p-whatif" aria-selected="false">What if</button>
-        <button role="tab" id="t-inputs" aria-controls="p-inputs" aria-selected="false">Inputs &amp; sources</button>
-        <button role="tab" id="t-memo" aria-controls="p-memo" aria-selected="false">Memo</button>
-        <button role="tab" id="t-how" aria-controls="p-how" aria-selected="false">How it works</button>
+    <div class="results">
+      <div class="tabs-wrap">
+        <div class="tabs" role="tablist" id="tablist" aria-label="Results">
+          <button type="button" role="tab" id="t-decision" aria-controls="p-decision" aria-selected="true">Decision</button>
+          <button type="button" role="tab" id="t-inputs" aria-controls="p-inputs" aria-selected="false">Your inputs</button>
+          <button type="button" role="tab" id="t-whatif" aria-controls="p-whatif" aria-selected="false">What if</button>
+          <button type="button" role="tab" id="t-cashflow" aria-controls="p-cashflow" aria-selected="false">Cash flow</button>
+          <button type="button" role="tab" id="t-funding" aria-controls="p-funding" aria-selected="false">Funding &amp; RERA</button>
+          <button type="button" role="tab" id="t-memo" aria-controls="p-memo" aria-selected="false">Memo</button>
+          <button type="button" role="tab" id="t-how" aria-controls="p-how" aria-selected="false">How it works</button>
+        </div>
       </div>
 
       <section class="panel" role="tabpanel" id="p-decision" aria-labelledby="t-decision">
-        <div id="verdict" class="verdict"></div>
-        <div class="row-actions">
-          <button class="btn" id="print" type="button">Print summary for a lender</button>
+        <div class="panel-head">
+          <p class="muted">The answer first: a verdict, then the numbers behind it. Use the <svg class="icon" style="width:14px;height:14px;vertical-align:-2px"><use href="#i-info"/></svg> on any card for a plain definition.</p>
+          <button type="button" class="btn" id="print"><svg class="icon"><use href="#i-print"/></svg>Print summary for a lender</button>
         </div>
-        <div class="cards" id="cards"></div>
-        <p class="small muted">The verdict thresholds (hurdle rate, minimum profit on cost) are assumptions to set for your business.</p>
+        <div id="verdict" class="verdict" aria-live="polite">
+          <div><div class="skeleton sk-value" style="width:120px"></div></div>
+          <div style="display:grid;gap:8px"><div class="skeleton sk-line"></div><div class="skeleton sk-line" style="width:80%"></div><div class="skeleton sk-line" style="width:60%"></div></div>
+        </div>
+        <div class="cards" id="cards">
+          <div class="card"><div class="skeleton sk-line" style="width:50%"></div><div class="skeleton sk-value"></div><div class="skeleton sk-line"></div></div>
+          <div class="card"><div class="skeleton sk-line" style="width:50%"></div><div class="skeleton sk-value"></div><div class="skeleton sk-line"></div></div>
+          <div class="card"><div class="skeleton sk-line" style="width:50%"></div><div class="skeleton sk-value"></div><div class="skeleton sk-line"></div></div>
+        </div>
         <div class="warns" id="warns"></div>
-        <h3>When the money is needed</h3>
-        <div class="chart-box"><canvas id="chart-cash" aria-label="Cumulative project cash and outside money by quarter"></canvas></div>
-        <h3>Where the money goes</h3>
-        <div class="chart-box" style="height:320px"><canvas id="chart-costs" aria-label="Total project cost by line, ₹ crore"></canvas></div>
-        <p class="small muted" id="costs-note"></p>
+        <div class="chart-card">
+          <h3>When is the money needed?</h3>
+          <p class="help">The green line is the project's cash, added up quarter by quarter. The orange line is the money you and the lender have put in, shown below zero. Its lowest point is your peak funding.</p>
+          <div class="chart-box"><canvas id="chart-cash" role="img" aria-label="Cumulative project cash and outside money by quarter"></canvas></div>
+        </div>
+        <p class="small muted">The verdict thresholds (hurdle rate, minimum profit on cost) are assumptions. Set them for your business in Your inputs → Decision rules.</p>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-inputs" aria-labelledby="t-inputs" hidden>
+        <div class="panel-head" id="inputs-head">
+          <div>
+            <h2 style="font-size:18px">Your deal</h2>
+            <p class="muted">Change any value and every result updates at once. Groups that still have example numbers are open; replace those first.</p>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-sm" id="export">Save to file</button>
+            <button type="button" class="btn btn-sm" id="import-btn">Load from file</button>
+            <input type="file" id="import" accept="application/json,.json" hidden>
+            <button type="button" class="btn btn-ghost btn-sm" id="reset">Reset to the example</button>
+          </div>
+        </div>
+        <div class="legend"><span>Where each number comes from:</span>
+          <span class="badge sourced">sourced</span><span>a cited report or law</span>
+          <span class="badge assumption">assumption</span><span>a judgement to confirm</span>
+          <span class="badge illustrative">example</span><span>a placeholder to replace</span>
+          <span class="badge your">your input</span><span>a value you entered</span></div>
+        <div class="groups" id="inputs-groups"></div>
+      </section>
+
+      <section class="panel" role="tabpanel" id="p-whatif" aria-labelledby="t-whatif" hidden>
+        <p class="muted">How fragile is the deal? These views use your inputs without the sidebar changes.</p>
+        <div class="chart-card">
+          <h3>Three cases side by side</h3>
+          <p class="help" id="presets-note"></p>
+          <div class="table-wrap"><table id="presets-table"></table></div>
+        </div>
+        <div class="chart-card">
+          <h3>Which assumption matters most?</h3>
+          <p class="help" id="tornado-note"></p>
+          <div class="chart-box" style="height:300px"><canvas id="chart-tornado" role="img" aria-label="Tornado chart of project NPV"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Sensitivity table</h3>
+          <p class="help">One input changed at a time; everything else stays as you entered it.</p>
+          <div class="table-wrap"><table id="sens-table"></table></div>
+        </div>
       </section>
 
       <section class="panel" role="tabpanel" id="p-cashflow" aria-labelledby="t-cashflow" hidden>
-        <div class="row-actions">
-          <button class="btn" id="dl-csv" type="button">Download as CSV</button>
+        <div class="panel-head">
+          <p class="muted">Every line, quarter by quarter. ₹ crore unless the row says otherwise; every amount happens at the end of its quarter; costs are shown as positive amounts.</p>
+          <button type="button" class="btn btn-sm" id="dl-csv">Download as CSV</button>
         </div>
-        <p class="small muted">₹ crore unless the row says otherwise. Every amount happens at the end of its quarter. Costs are shown as positive amounts.</p>
+        <p class="scroll-hint">Scroll the table sideways to see every quarter.</p>
         <div class="table-wrap"><table class="cf" id="cf-table"></table></div>
       </section>
 
       <section class="panel" role="tabpanel" id="p-funding" aria-labelledby="t-funding" hidden>
+        <p class="muted">What a lender looks at, and how the RERA account holds back buyers' money.</p>
         <div class="cards" id="lender-cards"></div>
         <p id="funding-note"></p>
-        <div class="chart-box"><canvas id="chart-balances" aria-label="RERA account, loan and outside money by quarter"></canvas></div>
+        <div class="chart-card">
+          <h3>Balances over time</h3>
+          <div class="chart-box"><canvas id="chart-balances" role="img" aria-label="RERA account, loan and outside money by quarter"></canvas></div>
+        </div>
         <div class="prose" id="rera-note"></div>
       </section>
 
-      <section class="panel" role="tabpanel" id="p-whatif" aria-labelledby="t-whatif" hidden>
-        <h3>Three cases side by side</h3>
-        <p class="small muted" id="presets-note"></p>
-        <div class="table-wrap"><table id="presets-table"></table></div>
-        <h3>Which assumption matters most?</h3>
-        <div class="chart-box" style="height:300px"><canvas id="chart-tornado" aria-label="Tornado chart of project NPV"></canvas></div>
-        <p class="small muted" id="tornado-note"></p>
-        <h3>Sensitivity table</h3>
-        <div class="table-wrap"><table id="sens-table"></table></div>
-      </section>
-
-      <section class="panel" role="tabpanel" id="p-inputs" aria-labelledby="t-inputs" hidden>
-        <p>Edit any value; results update at once. <span class="pill sourced">sourced</span> from a cited report or law ·
-          <span class="pill assumption">assumption</span> a judgement to confirm · <span class="pill illustrative">illustrative</span>
-          a placeholder to replace · <span class="pill your">your input</span> a value you entered. A blank or a labelled guess is better than an invented number.</p>
-        <div class="row-actions">
-          <button class="btn" id="reset" type="button">Reset to the example</button>
-          <button class="btn" id="export" type="button">Save inputs to a file</button>
-          <label class="btn" for="import">Load inputs from a file</label>
-          <input type="file" id="import" accept="application/json,.json" hidden>
-        </div>
-        <div class="table-wrap"><table class="inputs" id="inputs-table"></table></div>
-      </section>
-
       <section class="panel" role="tabpanel" id="p-memo" aria-labelledby="t-memo" hidden>
-        <p class="small muted">Written from the numbers by a fixed template. No AI service sees your deal.</p>
-        <div class="row-actions">
-          <button class="btn" id="dl-memo" type="button">Download memo (.txt)</button>
-          <button class="btn" id="copy-memo" type="button">Copy memo</button>
+        <div class="panel-head">
+          <p class="muted">A one-page investment memo written from the numbers by a fixed template. No AI service sees your deal.</p>
+          <div class="actions">
+            <button type="button" class="btn btn-sm" id="dl-memo">Download (.txt)</button>
+            <button type="button" class="btn btn-sm" id="copy-memo">Copy</button>
+          </div>
         </div>
-        <pre class="memo" id="memo"></pre>
+        <pre class="memo" id="memo">The memo appears here once the numbers are calculated.</pre>
       </section>
 
       <section class="panel" role="tabpanel" id="p-how" aria-labelledby="t-how" hidden>
         <div class="prose">
+          <div><button type="button" class="btn btn-primary" data-tour>Take the guided tour</button></div>
           <h3>What the tool does, step by step</h3>
           <ol>
             <li><b>Areas.</b> Built-up area = plot × FSI. Saleable area = built-up area × saleable ratio.</li>
@@ -190,14 +283,12 @@
   </div>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <p class="small muted disclaimer">A decision aid, not investment advice.</p>
-    <table class="titleblock" aria-label="Project credits">
-      <tr><th scope="row">Course</th><td colspan="3">CE725 Construction Economics and Finance, IIT Bombay · Topic 2</td></tr>
-      <tr><th scope="row">Team</th><td colspan="3">Ojas Somani · Shivam Shankar · Mrunal Pachpande · Shivansh Chaudhary · Arya Chourasia</td></tr>
-      <tr><th scope="row">Group</th><td class="group-no">30</td><th scope="row">Sheet</th><td>Nov 2026</td></tr>
-    </table>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>CE725 Construction Economics and Finance · IIT Bombay · Course project</span>
+    <span>A decision aid, not investment advice.</span>
   </div>
 </footer>
 </body>

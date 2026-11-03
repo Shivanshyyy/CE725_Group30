@@ -1,4 +1,4 @@
-# CE725 Topic 2: Real Estate Feasibility and Appraisal Tool (Group 30)
+# CE725 Topic 2: Real Estate Feasibility and Appraisal Tool
 
 Built for a small or mid-size residential developer deciding **whether to buy a land parcel and how much money he needs
 until buyer collections catch up** (see `USER_CONTEXT.md`, which governs every design choice).
@@ -11,7 +11,7 @@ until buyer collections catch up** (see `USER_CONTEXT.md`, which governs every d
 | `tool/app.py` | Streamlit app: Decision, Cash flow, Funding & RERA account, What if, Inputs & sources, Memo, How it works |
 | `tool/model.py` | The calculation engine: small, documented functions, each linked to a CE725 chapter |
 | `tool/base_case.json` | Every input with value, unit, source, date and a sourced / assumption / illustrative flag |
-| `tool/test_model.py`, `tool/test_api.py` | 33 automated checks for the engine and the website API, including a 300-scenario random sweep (AI-written, disclosed) |
+| `tool/test_model.py`, `tool/test_api.py` | 31 automated checks for the engine and the website API, including a 300-scenario random sweep (AI-written, disclosed) |
 | `tool/compare.py` | Compares the tool with the team's Excel benchmark (±0.1%) |
 | `benchmark/` | Method and template for the independent benchmark the team builds **by hand, without AI** |
 | `docs/` | Charter, user manual, validation report, reflection report, AI usage log, presentation, and `make_docs.py` that rebuilds them |
@@ -32,7 +32,7 @@ Rebuild every document after changing inputs or the benchmark: `pip install pyth
 | Path | What it is |
 |---|---|
 | `web/index.html` | Landing page: who it is for, how it works, Indian rules, how the numbers are checked, limits and privacy |
-| `web/tool.html`, `web/assets/` | The tool in the browser: same tabs as the Streamlit app, inputs saved in the visitor's own browser, save/load inputs as a file, a printable summary for a lender |
+| `web/tool.html`, `web/assets/` | The tool in the browser: same tabs as the Streamlit app, inputs saved in the visitor's own browser, save/load inputs as a file, a printable summary for a lender, a guided tour and Help on every page, phone and tablet layouts, light and dark mode |
 | `api/evaluate.py` | One Python serverless function. It validates the inputs and runs `tool/model.py`, so there is still one engine |
 | `vercel.json`, `.vercelignore` | Serve `web/`, deploy the function, keep the reports and PDFs out of the upload |
 | `serve_local.py` | Runs the site locally exactly as Vercel will: `python3 serve_local.py`, then open http://localhost:8000 |
@@ -67,5 +67,5 @@ The brief requires these to be the team's own work, so they are left as marked s
 5. **Rewrite the reflection report** in your own words, add your own AI examples, and write the half-page individual reflections.
 6. **Talk to 1–2 users** (a developer, a lender or a CA) about the [VALIDATE] questions in `USER_CONTEXT.md`; record what they said
    (bonus credit) and update `USER_CONTEXT.md`.
-7. Team number (Group 30) is filled in the charter. **Rehearse** the presentation twice, and make sure every member can explain every formula.
+7. **Fill the team number** in the charter, rehearse the presentation twice, and make sure every member can explain every formula.
 8. **Deploy the website** on Vercel (steps above) and add the link to the user manual and the slides.

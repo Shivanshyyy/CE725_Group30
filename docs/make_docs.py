@@ -29,12 +29,10 @@ from openpyxl.styles import Alignment, Font, PatternFill  # noqa: E402
 import compare as C  # noqa: E402
 import model as M  # noqa: E402
 
-DATE = "1 Nov 2026"  # date the documents were regenerated and the checks run
+DATE = "27 Oct 2026"  # date the documents were regenerated and the checks run
 TEAM = [("Ojas Somani", "23B4225", "Project lead and finance modeller"),
         ("Shivam Shankar", "23B1851", "AI and tool developer"),
-        ("Mrunal Pachpande", "23B0723", "Validation engineer and data lead"),
-        ("Shivansh Chaudhary", "24B2456", "Team member (role to confirm)"),
-        ("Arya Chourasia", "24B3034", "Team member (role to confirm)")]
+        ("Mrunal Pachpande", "23B0723", "Validation engineer and data lead")]
 TEAL, BRICK, INK, MUTED, GREY = "0E6A5B", "B0532A", "1A2421", "5A6964", "8A9792"
 AMBER_BG, TEAL_BG, HEAD_BG = "FFF4D6", "E3F1EE", "0E6A5B"
 FIG = HERE / "figures"
@@ -355,7 +353,7 @@ def illus_note():
 def charter():
     doc = new_doc("Project Charter", f"Annexure B format · CE725 Construction Economics and Finance · {DATE}")
     rows = [
-        ["Team number", "Group 30"],
+        ["Team number", "Team to fill in"],
         ["Team members and roles", "; ".join(f"{name} ({roll}): {role}" for name, roll, role in TEAM)
          + ". Documentation and reflection are shared."],
         ["Topic selected", "Topic 2: Real Estate Project Feasibility and Financial Appraisal Tool"],
@@ -722,7 +720,7 @@ AI_LOG = [
     ("Go / Marginal / No-go verdict rule", "NPV ≥ 0, profit on cost ≥ threshold, funding covered, downside NPV ≥ 0", "Validate the rule and thresholds with a developer"),
     ("Illustrative base case values", "Placeholder plot, FSI, land, premiums, timeline, limits, all flagged 'illustrative'", "Replace with the team's sample project"),
     ("Streamlit app design", "Seven tabs, so-what sentences, warnings, inputs table with sources", "Peer test with classmates"),
-    ("Automated checks", "22 unittest checks on 23 Oct incl. course problems PS2 #15 and #17 (31 after 27 Oct, 33 after 1 Nov)", "Read each test and run it"),
+    ("Automated checks", "22 unittest checks on 23 Oct incl. course problems PS2 #15 and #17 (31 after 27 Oct)", "Read each test and run it"),
     ("compare.py and benchmark instructions", "Script that fills the discrepancy table from the team's Excel results", "Use it after building the benchmark by hand"),
     ("Investment memo", "Template-based memo (no AI service called, for privacy)", "Read the memo against the Decision page"),
     ("Project charter rows", "Methods, data sources, platform, benchmark case, risks", "Team edits wording"),
@@ -742,11 +740,6 @@ AI_LOG_LATER = [
     ("27 Oct 2026", "Finding: loan rate convention", "Changed from effective annual to nominal annual charged monthly; finance cost rises", "Recompute one quarter's interest by hand"),
     ("27 Oct 2026", "Finding: fractional quarters silently truncated", "Now rounded with a warning; website accepts whole quarters only", "Enter 12.7 quarters and read the warning"),
     ("27 Oct 2026", "Finding: website showed every tab at once; saved inputs survived a changed example", "Fixed both; charts drawn when their tab opens; printable lender summary added", "Check on a phone and in print preview"),
-    ("1 Nov 2026", "Full review of code, website and documents", "Ran all checks and edge-case probes; list of fixes in CHANGES_REPORT.md", "Read the report; repeat one probe yourselves"),
-    ("1 Nov 2026", "Finding: maximum land price said 'even free land fails' for very profitable deals", "Fixed: search range widens until NPV turns negative; regression check added", "Set sale price to ₹60,000/sq ft and land to ₹2 cr; read the Maximum land price card"),
-    ("1 Nov 2026", "Finding: 0% profit on cost failed a 0% threshold", "Fixed: explicit check for a missing value instead of treating 0 as missing", "Set the threshold to 0 and check the verdict list"),
-    ("1 Nov 2026", "Finding: Streamlit app kept calling edited inputs 'illustrative'", "Fixed: edited inputs are flagged 'your input' in the banner, inputs table and memo", "Edit the land price in the Streamlit app and read the banner"),
-    ("1 Nov 2026", "Website redesign (Group 30 branding)", "Cash drawn as a site section with ₹0 datum, stamp-style verdict, lead numbers, drawing title block footer", "Open on a phone, in dark mode and in print preview"),
     ("27 Oct 2026", "Random sweep test", "300 random extreme scenarios: no crash, sources = uses, RERA balance ≥ 0, loan ≤ limit", "Read the test; change the seed and rerun"),
 ]
 
@@ -777,7 +770,7 @@ def ai_log():
     notes = wb.create_sheet("How to use")
     for line in [
         "Annexure A format from the course brief. Keep adding entries as you work; do not reconstruct the log at the end.",
-        f"Rows 1–{len(AI_LOG) + len(AI_LOG_LATER)} list the significant AI contributions made with Claude between 23 Oct and 1 Nov 2026. The amber columns are yours to fill:",
+        f"Rows 1–{len(AI_LOG) + len(AI_LOG_LATER)} list the significant AI contributions made with Claude between 23 and 27 Oct 2026. The amber columns are yours to fill:",
         "Decision = Accept, Modify or Reject; Reason and verification = why, and how you checked it.",
         "Add your own prompts (other AI tools, your own Claude sessions) as new rows. The brief asks for at least 20 significant entries per team.",
         "Rejected and modified entries show critical judgement, which is what this part of the grade rewards.",

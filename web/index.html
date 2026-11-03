@@ -3,148 +3,162 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Land Deal Feasibility · CE725 Group 30</title>
+<title>Land Deal Feasibility</title>
 <meta name="description" content="Should you buy this land? A feasibility tool for small and mid-size residential developers in India: go/no-go, peak funding, maximum land price and what-ifs in minutes.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b6b5c'/%3E%3Cpath d='M5 11h22' stroke='white' stroke-width='2'/%3E%3Cpath d='M5 11l5 9 6 3 5-4 6-8' stroke='white' stroke-width='2.4' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0f766e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f766e'/%3E%3Cpath d='M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5' stroke='white' stroke-width='2' fill='none' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..100,400..900&family=Source+Sans+3:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
-<body class="landing">
-<header class="bar">
-  <div class="wrap">
-    <div class="brand-wrap">
-    <a class="brand" href="/">
-      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="var(--accent)"/><path d="M5 11h22" stroke="var(--accent-ink)" stroke-width="2"/><path d="M5 11l5 9 6 3 5-4 6-8" stroke="var(--accent-ink)" stroke-width="2.4" fill="none" stroke-linejoin="round"/></svg>
-      <span>Land Deal Feasibility</span>
-    </a>
-    <span class="group-badge" title="CE725 course project team">Group 30</span>
-    </div>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="i-house" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M7 23h18M10 23V13l6-4 6 4v10M14 23v-5h4v5"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/"><span class="brand-mark"><svg class="icon" style="width:20px;height:20px"><use href="#i-house"/></svg></span>Land Deal Feasibility</a>
     <nav class="nav" aria-label="Main">
+      <a href="#use">How to use it</a>
       <a href="#how">How it works</a>
       <a href="#checks">How we check it</a>
-      <a href="#limits">Limits</a>
-      <a class="cta" href="/tool">Open the tool</a>
+      <a class="btn btn-primary btn-sm" href="/tool">Open the tool</a>
     </nav>
+    <button type="button" class="btn btn-ghost btn-icon menu-btn" data-open="menu" aria-label="Open menu"><svg class="icon"><use href="#i-menu"/></svg></button>
   </div>
 </header>
 
-<main>
+<dialog class="drawer" id="menu" aria-label="Menu">
+  <div class="dialog-body">
+    <div class="drawer-head"><strong>Menu</strong><button type="button" class="btn btn-ghost btn-icon" data-close aria-label="Close menu"><svg class="icon"><use href="#i-x"/></svg></button></div>
+    <a href="#use">How to use it</a>
+    <a href="#how">How it works</a>
+    <a href="#checks">How we check it</a>
+    <a href="#limits">Limits and privacy</a>
+    <a href="/tool">Open the tool</a>
+    <a href="/tool?tour=1">Take the guided tour</a>
+  </div>
+</dialog>
+
+<main id="main" tabindex="-1">
   <section class="hero">
-    <div class="wrap">
-      <div class="hero-text">
-        <h1>Should you buy this&nbsp;land?</h1>
+    <div class="container hero-grid">
+      <div>
+        <span class="pill-note">For residential developers in India</span>
+        <h1>Should you buy this land?</h1>
         <p class="lede">Enter the deal. In a few minutes you get a go/no-go verdict, how much money you need and in which quarter,
           the most you should pay for the land, and what happens if prices fall, costs rise or the project runs late.</p>
         <div class="actions">
-          <a class="btn primary big" href="/tool">Open the tool</a>
-          <a class="btn big" href="#how">See how it works</a>
+          <a class="btn btn-primary btn-lg" href="/tool">Open the tool <svg class="icon"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-lg" href="/tool?tour=1"><svg class="icon"><use href="#i-play"/></svg>Take the 1-minute tour</a>
         </div>
-        <p class="credit">A CE725 course project by <b>Group 30</b> · </p>
+        <p class="small muted" style="margin-top:14px">No sign-up. An example project is loaded, so you can explore before entering your own numbers.</p>
       </div>
-    </div>
-
-    <figure class="section-profile wrap" aria-labelledby="profile-cap">
-      <svg viewBox="0 0 1200 430" role="img" aria-label="Outside money in the example project by quarter: it falls to ₹36.47 crore below zero in Q8 and is fully returned by Q17.">
-        <defs>
-          <pattern id="earth" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-            <line x1="0" y1="0" x2="0" y2="12" stroke="var(--brick)" stroke-width="1.4" opacity=".55"/>
-          </pattern>
-        </defs>
-        <!-- quarter ticks -->
-        <g class="ticks">
-          <line x1="40" y1="70" x2="40" y2="400"/><line x1="216.8" y1="70" x2="216.8" y2="400"/>
-          <line x1="924.2" y1="70" x2="924.2" y2="400"/><line x1="1042.1" y1="70" x2="1042.1" y2="400"/>
-        </g>
-        <path class="earth" d="M40.0,70.0 L40.0,249.8 L98.9,271.6 L157.9,293.5 L216.8,297.4 L275.8,311.0 L334.7,328.9 L393.7,346.8 L452.6,361.2 L511.6,369.1 L570.5,368.1 L629.5,357.0 L688.4,335.4 L747.4,316.0 L806.3,316.0 L865.3,316.0 L924.2,143.2 L983.2,94.2 L1042.1,70.0 L1101.1,70.0 L1160.0,70.0 Z"/>
-        <polyline class="ground" points="40.0,70.0 40.0,249.8 98.9,271.6 157.9,293.5 216.8,297.4 275.8,311.0 334.7,328.9 393.7,346.8 452.6,361.2 511.6,369.1 570.5,368.1 629.5,357.0 688.4,335.4 747.4,316.0 806.3,316.0 865.3,316.0 924.2,143.2 983.2,94.2 1042.1,70.0 1101.1,70.0 1160.0,70.0"/>
-        <line class="datum" x1="20" y1="70" x2="1180" y2="70"/>
-        <text class="datum-label" x="1180" y="58" text-anchor="end">±0 · your own pocket</text>
-        <!-- level mark at peak funding -->
-        <g class="level" transform="translate(511.6 369.1)">
-          <path d="M-11,-20 L11,-20 L0,-2 Z"/>
-          <line x1="-46" y1="-20" x2="46" y2="-20"/>
-        </g>
-        <text class="mark big" x="511.6" y="404" text-anchor="middle">Peak funding −₹36.47 cr · Q8</text>
-        <text class="mark" x="48" y="100">Q0 · land and</text>
-        <text class="mark" x="48" y="120">stamp duty paid</text>
-        <text class="mark" x="224.8" y="100">Q3 · construction</text>
-        <text class="mark" x="224.8" y="120">starts, sales open</text>
-        <text class="mark" x="932" y="300">Q15 · possession</text>
-        <text class="mark" x="1048.1" y="100">Q17 · all outside</text>
-        <text class="mark" x="1048.1" y="120">money returned</text>
-      </svg>
-      <figcaption id="profile-cap">The question the tool answers first: how deep the hole goes and when you climb out. Outside money (equity + loan)
-        in the tool's example project, drawn quarter by quarter. Illustrative inputs, not a real deal.</figcaption>
-    </figure>
-  </section>
-
-  <section class="band">
-    <div class="wrap split">
-      <div>
-        <h2>Built around one person and one question</h2>
-        <blockquote class="quote">Should I buy this land, and how much money do I need to survive until collections catch up?</blockquote>
-        <p class="muted">A small or mid-size developer in Mumbai or Pune who knows construction and the local market, is not a finance
-          modeller, and has to defend the numbers to a lender or investor. Today the decision rests on a spreadsheet few people trust.</p>
-        <p class="small muted">Composite persona from desk research, to be confirmed in interviews.</p>
-      </div>
-      <div>
-        <h3>What he needs, most important first</h3>
-        <ol class="needs">
-          <li>A trustworthy go/no-go, fast</li>
-          <li>Peak funding, the quarter it hits, and the equity/loan split</li>
-          <li>“What if” without rebuilding the model</li>
-          <li>Numbers a lender will accept, including a downside case</li>
-          <li>The most he can pay for the land</li>
-          <li>A source and date for every input</li>
-        </ol>
+      <div class="preview" aria-label="What the tool shows first">
+        <div class="eyebrow">What you see first</div>
+        <span class="verdict-chip">GO · MARGINAL · NO-GO</span>
+        <div class="row"><span>Peak funding and its quarter</span><span class="num">₹ cr · Qn</span></div>
+        <div class="row"><span>Value today at your target return (NPV)</span><span class="num">₹ cr</span></div>
+        <div class="row"><span>Most you can pay for the land</span><span class="num">₹ cr</span></div>
+        <div class="row"><span>Break-even sale price</span><span class="num">₹/sq ft</span></div>
+        <p class="small muted">Each number comes with one plain sentence on what it means for the deal, and the whole summary prints as a page for your lender.</p>
       </div>
     </div>
   </section>
 
-  <section class="band" id="how">
-    <div class="wrap">
+  <section class="section" id="use">
+    <div class="container">
+      <div class="eyebrow">How to use it</div>
+      <h2>Four steps from land deal to lender summary</h2>
+      <ol class="grid cols-4" style="list-style:none;padding:0">
+        <li class="tile"><span class="step-num">1</span><h3>Enter your deal</h3><p>Replace the example numbers with your plot, land price, costs, prices and funding. Each input shows where its number comes from.</p></li>
+        <li class="tile"><span class="step-num">2</span><h3>Read the verdict</h3><p>Go, Marginal or No-go, with the checks behind it, your peak funding and the most you can pay for the land.</p></li>
+        <li class="tile"><span class="step-num">3</span><h3>Stress-test it</h3><p>Try the downside case or move sliders for price, cost, sales pace and delay. Every number updates at once.</p></li>
+        <li class="tile"><span class="step-num">4</span><h3>Share it</h3><p>Print a one-page summary for your lender, or download the memo and the quarter-by-quarter cash flow.</p></li>
+      </ol>
+      <div><a class="btn btn-primary" href="/tool">Start with the example <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Who it is for</div>
+      <h2>Built around one person and one question</h2>
+      <div class="grid cols-2">
+        <div class="tile" style="gap:16px">
+          <p class="quote" style="color:var(--foreground)">“Should I buy this land, and how much money do I need to survive until collections catch up?”</p>
+          <p>A small or mid-size developer in Mumbai or Pune: knows construction and the local market, is not a finance modeller,
+            and has to defend the numbers to a lender or investor. Today the decision rests on a spreadsheet few people trust.</p>
+          <p class="small">Composite persona from desk research, to be confirmed in interviews.</p>
+        </div>
+        <div class="tile">
+          <h3>What he needs, in order</h3>
+          <ol class="needs">
+            <li>A trustworthy go/no-go, fast</li>
+            <li>Peak funding, the quarter it hits, and the equity/loan split</li>
+            <li>“What if” without rebuilding the model</li>
+            <li>Numbers a lender will accept, including a downside case</li>
+            <li>The most he can pay for the land</li>
+            <li>A source and date for every input</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="container">
+      <div class="eyebrow">How it works</div>
       <h2>Eight steps from land price to verdict</h2>
       <p class="intro">The project is modelled quarter by quarter, from the land purchase to the last buyer payment. Every step is a small,
         tested calculation you can trace on screen.</p>
-      <ol class="steps">
-        <li><h3>Areas</h3><p>Plot × FSI gives built-up area; a saleable ratio gives the area you sell.</p></li>
-        <li><h3>Costs</h3><p>Land and stamp duty up front, approvals and premiums before construction, escalating construction cost along an S-curve.</p></li>
-        <li><h3>Sales</h3><p>A share of the saleable area sells each quarter at a price that grows each year.</p></li>
-        <li><h3>Collections</h3><p>Buyers pay a booking amount, then in step with construction, then the rest at possession.</p></li>
-        <li><h3>RERA account</h3><p>A set share of collections is locked and released only as construction is completed.</p></li>
-        <li><h3>Funding</h3><p>Equity covers shortfalls first, then the loan. The loan is repaid from free cash only.</p></li>
-        <li><h3>Results</h3><p>NPV, IRR, payback, profit on cost, peak funding and lender ratios.</p></li>
-        <li><h3>Break-evens</h3><p>The sale price and the land price at which the project exactly meets your hurdle.</p></li>
+      <ol class="grid cols-4" style="list-style:none;padding:0">
+        <li class="tile"><span class="step-num">1</span><h3>Areas</h3><p>Plot × FSI gives built-up area; a saleable ratio gives the area you sell.</p></li>
+        <li class="tile"><span class="step-num">2</span><h3>Costs</h3><p>Land and stamp duty up front, approvals and premiums before construction, escalating construction cost along an S-curve.</p></li>
+        <li class="tile"><span class="step-num">3</span><h3>Sales</h3><p>A share of the saleable area sells each quarter at a price that grows each year.</p></li>
+        <li class="tile"><span class="step-num">4</span><h3>Collections</h3><p>Buyers pay a booking amount, then in step with construction, then the rest at possession.</p></li>
+        <li class="tile"><span class="step-num">5</span><h3>RERA account</h3><p>A set share of collections is locked and released only as construction is completed.</p></li>
+        <li class="tile"><span class="step-num">6</span><h3>Funding</h3><p>Equity covers shortfalls first, then the loan. The loan is repaid from free cash only.</p></li>
+        <li class="tile"><span class="step-num">7</span><h3>Results</h3><p>NPV, IRR, payback, profit on cost, peak funding and lender ratios.</p></li>
+        <li class="tile"><span class="step-num">8</span><h3>Break-evens</h3><p>The sale price and the land price at which the project exactly meets your hurdle.</p></li>
       </ol>
     </div>
   </section>
 
-  <section class="band">
-    <div class="wrap">
-      <h2>Indian rules, built in</h2>
-      <dl class="rules">
-        <div><dt><span class="ref">RERA s.4(2)(l)(D)</span>The separate RERA account</dt><dd>70% of collections by default (an input, since states can vary it), drawn only in step with completion.</dd></div>
-        <div><dt><span class="ref">RERA s.13</span>Booking cap</dt><dd>A warning if the booking amount is above 10% before a registered agreement.</dd></div>
-        <div><dt><span class="ref">RERA s.18</span>Delay interest</dt><dd>A late project owes interest to buyers; the delay scenario counts it.</dd></div>
-        <div><dt><span class="ref">Premiums</span>Their own cost line</dt><dd>FSI, fungible and TDR premiums are shown separately, because in Mumbai they are a large cost.</dd></div>
-        <div><dt><span class="ref">GST</span>Passed through</dt><dd>GST collected from buyers goes to the government, so revenue is shown net of GST.</dd></div>
-        <div><dt><span class="ref">Income tax</span>Rate as an input</dt><dd>Charged on cumulative profit with losses carried forward; confirm the rate against the Act.</dd></div>
-      </dl>
+  <section class="section">
+    <div class="container">
+      <div class="eyebrow">Indian rules built in</div>
+      <h2>Not a generic spreadsheet</h2>
+      <div class="grid cols-3">
+        <div class="tile"><span class="ref">RERA s.4(2)(l)(D)</span><h3>The separate RERA account</h3><p>70% of collections by default (an input, since states can vary it), drawn only for land and construction in step with completion.</p></div>
+        <div class="tile"><span class="ref">RERA s.13</span><h3>Booking cap</h3><p>A warning if the booking amount is above 10% before a registered agreement.</p></div>
+        <div class="tile"><span class="ref">RERA s.18</span><h3>Delay interest</h3><p>A late project owes interest to buyers; the delay scenario counts it.</p></div>
+        <div class="tile"><span class="ref">Premiums</span><h3>Their own cost line</h3><p>FSI, fungible and TDR premiums are shown separately, because in Mumbai they are a large cost.</p></div>
+        <div class="tile"><span class="ref">GST</span><h3>Passed through</h3><p>GST collected from buyers goes to the government, so revenue is shown net of GST.</p></div>
+        <div class="tile"><span class="ref">Income tax</span><h3>Rate as an input</h3><p>Charged on cumulative profit with losses carried forward; confirm the rate against the Act.</p></div>
+      </div>
     </div>
   </section>
 
-  <section class="band" id="checks">
-    <div class="wrap">
+  <section class="section" id="checks">
+    <div class="container">
+      <div class="eyebrow">How we check the numbers</div>
       <h2>Correct before pretty</h2>
       <p class="intro">A number you cannot trace is a number you should not use. The engine behind this site is checked three ways.</p>
-      <div class="checks">
-        <div><span class="num">33</span><h3>Automated checks</h3><p>Cash sources equal uses every quarter, also across 300 random extreme scenarios; NPV is zero at the IRR; break-evens give NPV = 0; two CE725 course problems are reproduced exactly.</p></div>
-        <div><span class="num">±0.1%</span><h3>Independent benchmark</h3><p>The base case is recomputed by hand in a plain spreadsheet, without AI and without reading the code. In progress.</p></div>
-        <div><span class="num">Q0–Q3</span><h3>Toy case on paper</h3><p>A few quarters worked by hand to confirm timing and sign conventions.</p></div>
+      <div class="grid cols-3">
+        <div class="tile"><span class="big">31</span><h3>Automated checks</h3><p>Cash sources equal uses every quarter, also across 300 random extreme scenarios; NPV is zero at the IRR; break-evens give NPV = 0; two CE725 course problems are reproduced exactly.</p></div>
+        <div class="tile"><span class="big">±0.1%</span><h3>Independent benchmark</h3><p>The base case is recomputed by hand in a plain spreadsheet, without AI and without reading the code. In progress.</p></div>
+        <div class="tile"><span class="big">Q0–Q3</span><h3>Toy case on paper</h3><p>A few quarters worked by hand to confirm timing and sign conventions.</p></div>
       </div>
-      <div class="sources">
+      <div class="tile">
         <h3>Where the market inputs come from</h3>
         <ul class="plain">
           <li>Sale price and growth: Knight Frank, India Real Estate H1 2026 (Pune average ₹10,063/sq ft, +5% a year)</li>
@@ -152,47 +166,48 @@
           <li>Land value floor: IGR Maharashtra ready reckoner rates (eASR)</li>
           <li>Rules: RERA Act 2016, Sections 4, 13 and 18</li>
         </ul>
-        <p class="small muted">Every input in the tool shows its source and date, or is flagged as an assumption or an illustrative placeholder. A blank or a labelled guess is better than an invented number.</p>
+        <p>Every input in the tool shows its source and date, or is flagged as an assumption or an example placeholder. A blank or a labelled guess is better than an invented number.</p>
       </div>
     </div>
   </section>
 
-  <section class="band" id="limits">
-    <div class="wrap split">
-      <div>
-        <h2>What it does not do</h2>
-        <ul class="plain">
-          <li>One project, one phase. Joint-development and revenue-share deals are not modelled yet, although they are common in Indian cities.</li>
-          <li>Simplified tax timing, and the RERA account balance is released at possession.</li>
-          <li>The verdict thresholds (hurdle rate, minimum profit on cost) are assumptions to set for your own business.</li>
-          <li>The example project is illustrative. It shows how the tool works, not an investment answer.</li>
-        </ul>
+  <section class="section" id="limits">
+    <div class="container">
+      <div class="eyebrow">Limits and privacy</div>
+      <h2>What it does not do</h2>
+      <div class="grid cols-2">
+        <div class="tile">
+          <h3>Limits</h3>
+          <ul class="plain">
+            <li>One project, one phase. Joint-development and revenue-share deals are not modelled yet, although they are common in Indian cities.</li>
+            <li>Simplified tax timing, and the RERA account balance is released at possession.</li>
+            <li>The verdict thresholds (hurdle rate, minimum profit on cost) are assumptions to set for your own business.</li>
+            <li>The example project is illustrative. It shows how the tool works, not an investment answer.</li>
+          </ul>
+        </div>
+        <div class="tile">
+          <h3>Your data</h3>
+          <ul class="plain">
+            <li>Inputs are sent to a calculation function, used once, and not stored or logged by the tool.</li>
+            <li>Your inputs are saved only in your own browser, so you can come back to them.</li>
+            <li>The investment memo is written by a fixed template. No AI service sees your deal.</li>
+            <li>For a confidential deal, run the open-source version on your own computer.</li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h2>Your data</h2>
-        <ul class="plain">
-          <li>Inputs are sent to a calculation function, used once, and not stored or logged by the tool.</li>
-          <li>Your inputs are saved only in your own browser, so you can come back to them.</li>
-          <li>The investment memo is written by a fixed template. No AI service sees your deal.</li>
-          <li>For a confidential deal, run the open-source version on your own computer.</li>
-        </ul>
+      <div class="cta-band">
+        <div><h3>Ready to check a deal?</h3><p class="muted small">Start with the example project, then replace it with yours.</p></div>
+        <div class="actions"><a class="btn btn-primary" href="/tool">Open the tool</a><a class="btn" href="/tool?tour=1">Take the tour</a></div>
       </div>
-    </div>
-    <div class="wrap closing">
-      <a class="btn primary big" href="/tool">Open the tool</a>
     </div>
   </section>
 </main>
 
-<footer class="site">
-  <div class="wrap">
-    <p class="small muted disclaimer">A decision aid, not investment advice.</p>
-    <table class="titleblock" aria-label="Project credits">
-      <tr><th scope="row">Project</th><td colspan="3">Real Estate Feasibility and Appraisal Tool · Topic 2</td></tr>
-      <tr><th scope="row">Course</th><td colspan="3">CE725 Construction Economics and Finance, IIT Bombay</td></tr>
-      <tr><th scope="row">Team</th><td colspan="3">Ojas Somani · Shivam Shankar · Mrunal Pachpande · Shivansh Chaudhary · Arya Chourasia</td></tr>
-      <tr><th scope="row">Group</th><td class="group-no">30</td><th scope="row">Sheet</th><td>Nov 2026</td></tr>
-    </table>
+<footer class="site-footer">
+  <div class="container">
+    <span>CE725 Construction Economics and Finance · IIT Bombay · Course project, Topic 2</span>
+    <span>Ojas Somani · Shivam Shankar · Mrunal Pachpande</span>
+    <span>A decision aid, not investment advice.</span>
   </div>
 </footer>
 </body>

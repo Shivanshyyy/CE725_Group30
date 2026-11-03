@@ -62,13 +62,10 @@ res, m = ev["result"], ev["result"]["metrics"]
 sw = M.so_what(inp, ev)
 
 st.title("Should we buy this land?")
-st.caption(f"Group 30 · {META['project_name']} · all money in ₹ crore unless shown · quarters counted from the land purchase (Q0)")
-# inputs the user changed are no longer placeholders
-EDITED = {k for k, v in st.session_state["values"].items() if v != BASE[k]}
-META_NOW = {**META, "inputs": {k: {**v, "flag": "your input" if k in EDITED else v["flag"]} for k, v in META["inputs"].items()}}
-n_illus = len(M.flagged_inputs(META_NOW, ("illustrative",)))
+st.caption(f"{META['project_name']} · all money in ₹ crore unless shown · quarters counted from the land purchase (Q0)")
+n_illus = len(M.flagged_inputs(META, ("illustrative",)))
 if n_illus:
-    st.info(f"{n_illus} input(s) are illustrative placeholders, not real project data. Replace them in 'Inputs & sources' "
+    st.info(f"{n_illus} inputs are illustrative placeholders, not real project data. Replace them in 'Inputs & sources' "
             "before using these results for a decision.")
 
 tabs = st.tabs(["Decision", "Cash flow", "Funding & RERA account", "What if", "Inputs & sources", "Memo", "How it works"])
@@ -197,7 +194,7 @@ with tabs[4]:
     st.caption("Edit the Value column. 'sourced' = from a cited report or law. 'assumption' = a judgement to confirm. "
                "'illustrative' = placeholder until real project data is entered. Blank is better than invented.")
     rows = [{"Group": v["group"], "Input": v["label"], "Value": float(st.session_state["values"][k]), "Unit": v["unit"],
-             "Flag": META_NOW["inputs"][k]["flag"], "Source": v["source"], "Date": v["date"], "key": k} for k, v in META["inputs"].items()]
+             "Flag": v["flag"], "Source": v["source"], "Date": v["date"], "key": k} for k, v in META["inputs"].items()]
     df = pd.DataFrame(rows)
     edited = st.data_editor(df, column_config={"key": None, "Value": st.column_config.NumberColumn(format="%.2f")},
                             disabled=["Group", "Input", "Unit", "Flag", "Source", "Date"], hide_index=True,
@@ -213,7 +210,7 @@ with tabs[4]:
 
 # ---------- 6. Memo ----------
 with tabs[5]:
-    text = M.memo(inp, META_NOW, ev)
+    text = M.memo(inp, META, ev)
     st.caption("Written from the numbers by a fixed template. No AI service is called, so the inputs never leave this computer.")
     st.code(text, language=None)
     st.download_button("Download memo (.txt)", text.encode(), "investment_memo.txt", "text/plain")

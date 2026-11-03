@@ -470,13 +470,7 @@ def breakeven_price(inp):
 
 def breakeven_land(inp):
     """Maximum land price (residual land value at the hurdle). None if even free land fails the hurdle."""
-    f = lambda x: run({**inp, "land_price_cr": x})["metrics"]["project_npv"]
-    if f(0.0) < 0:
-        return None
-    hi = max(10 * inp["land_price_cr"], 50.0)
-    while f(hi) > 0 and hi < 1e6:  # widen until NPV turns negative, so a very good deal is not reported as "no land price works"
-        hi *= 4
-    return breakeven(inp, "land_price_cr", 0.0, hi)
+    return breakeven(inp, "land_price_cr", 0.0, max(10 * inp["land_price_cr"], 50.0))
 
 
 SENSITIVITY_DRIVERS = [
@@ -521,7 +515,7 @@ def verdict(inp, res, downside):
     m = res["metrics"]
     checks = [
         ("Project NPV ≥ 0 at the hurdle rate", m["project_npv"] >= 0),
-        (f"Profit on cost ≥ {inp['min_profit_on_cost_pct']:.0f}%", m["profit_on_cost"] is not None and m["profit_on_cost"] >=inp["min_profit_on_cost_pct"] / 100),
+        (f"Profit on cost ≥ {inp['min_profit_on_cost_pct']:.0f}%", (m["profit_on_cost"] or -1) >= inp["min_profit_on_cost_pct"] / 100),
         ("Equity + loan limits cover peak funding", m["extra_equity"] <= 1e-6),
         ("NPV stays ≥ 0 in the downside case", downside["metrics"]["project_npv"] >= 0),
     ]

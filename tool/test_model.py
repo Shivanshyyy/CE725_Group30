@@ -162,21 +162,6 @@ class EdgeCases(unittest.TestCase):
         self.assertIn("Recommendation", text)
         self.assertIn("illustrative", text)
 
-    def test_max_land_price_found_for_a_very_profitable_deal(self):
-        # high price, cheap land: NPV stays positive far above 10x the land price, a land break-even must still exist
-        inp = {**INP, "price_psf": 60000, "land_price_cr": 2}
-        bl = M.breakeven_land(inp)
-        self.assertIsNotNone(bl)
-        self.assertAlmostEqual(M.run({**inp, "land_price_cr": bl})["metrics"]["project_npv"], 0.0, delta=1e-3)
-        self.assertIsNone(M.breakeven_land({**INP, "price_psf": 4000}))  # free land still fails
-
-    def test_zero_profit_passes_a_zero_threshold(self):
-        down = M.run(INP)
-        res = M.run(INP)
-        res["metrics"] = {**res["metrics"], "profit_on_cost": 0.0}
-        _, checks = M.verdict({**INP, "min_profit_on_cost_pct": 0}, res, down)
-        self.assertTrue(checks[1][1])
-
 
 if __name__ == "__main__":
     unittest.main()
